@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "esetscraperservice"
+version = "0.1.0"
+description = ""
+authors = ["Sergey K <unix3dgforce@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pydantic = "^2.5.3"
+telethon = "^1.33.1"
+pyyaml = "^6.0.1"
+loguru = "^0.7.2"
+dependency-injector = "^4.41.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

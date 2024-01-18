@@ -4,7 +4,10 @@ from typing import Any
 
 import yaml
 from pathlib import Path
+
+from core.interfaces import IScraperService
 from core.utils import ExitCode
+from dependency_injector.wiring import inject, Provide
 from containers import ApplicationContainer
 
 __author__ = 'Sergey K. aka unix3dgforce'
@@ -47,6 +50,11 @@ def set_debug_mode(handlers: dict[Any, Any]) -> dict[Any, Any]:
     return handlers
 
 
+@inject
+def main(service: IScraperService = Provide[ApplicationContainer.scraper_service], **kwargs) -> Any:
+    service.run(**kwargs)
+
+
 def create_parser() -> argparse.ArgumentParser:
     _parser = argparse.ArgumentParser(
         prog="Nod32Scraper",
@@ -82,15 +90,15 @@ def run_container(params: dict[str, Any] = {}):
     container.init_resources()
     container.wire(modules=[sys.modules[__name__]])
 
-    # main(**{k.lower(): v for k, v in params.items()})
+    main(**{k.lower(): v for k, v in params.items()})
 
 
 if __name__ == '__main__':
     parser = create_parser()
     namespace = parser.parse_args()
 
-    if len(sys.argv) >= 2:
-        pass
+    if len(sys.argv) >= 1:
+        run_container(vars(namespace))
     else:
         parser.print_usage()
         sys.exit(ExitCode.USAGE)

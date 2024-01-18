@@ -1,13 +1,13 @@
 from __future__ import annotations
 
 import abc
-from typing import TypeVar
+from .IService import IService
 
 __author__ = 'Sergey K. aka unix3dgforce'
 __copyright__ = 'Copyright (c) 2024 Sergey K.'
 
 
-class IScraperService(metaclass=abc.ABCMeta):
+class IScraperService(IService):
     @abc.abstractmethod
-    def run(self):
+    def run(self, **kwargs):
         """Run scraper"""

@@ -9,5 +9,5 @@ __copyright__ = 'Copyright (c) 2024 Sergey K.'
 
 class IScraperService(IService):
     @abc.abstractmethod
-    def run(self, **kwargs):
+    async def run(self, **kwargs):
         """Run scraper"""

@@ -7,6 +7,8 @@ scrapers:
       channel_id: "@upnod32"
     patterns:
       - "Username:\\s(EAV-\\d{10})\\sPassword:\\s([a-z0-9]{10})"
+    limit_days: 7
+    timezone: "Asia/Tashkent"
 database:
 
 log:

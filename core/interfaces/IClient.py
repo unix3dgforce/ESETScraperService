@@ -6,10 +6,10 @@ __copyright__ = 'Copyright (c) 2024 Sergey K.'
 
 class IClient(metaclass=abc.ABCMeta):
     @abc.abstractmethod
-    def connect(self):
+    async def connect(self):
         """Connect client to service"""
 
     @abc.abstractmethod
-    def disconnect(self):
+    async def disconnect(self):
         """Disconnect client to service"""
 

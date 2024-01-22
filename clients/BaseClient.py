@@ -11,9 +11,9 @@ T = TypeVar('T')
 
 class BaseClient(IClient):
     @abc.abstractmethod
-    def connect(self):
+    async def connect(self):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def disconnect(self):
+    async def disconnect(self):
         raise NotImplementedError

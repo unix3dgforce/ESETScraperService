@@ -11,6 +11,8 @@ class ScraperService(IScraperService):
         self._scrapers = scrapers
         self._logger = logger
 
-    def run(self):
+    async def run(self, **kwargs):
         self._logger.information(f"Start scraper service")
-        asyncio.run(self._scrapers['telegram'].run())
+        for name, scraper in self._scrapers.items():
+            self._logger.information(f"Start scraper: [{name.capitalize()}]")
+            await scraper.run(**kwargs)

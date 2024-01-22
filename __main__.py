@@ -1,4 +1,5 @@
 import argparse
+import asyncio
 import sys
 from typing import Any
 
@@ -52,7 +53,7 @@ def set_debug_mode(handlers: dict[Any, Any]) -> dict[Any, Any]:
 
 @inject
 def main(service: IScraperService = Provide[ApplicationContainer.scraper_service], **kwargs) -> Any:
-    service.run(**kwargs)
+    asyncio.run(service.run(**kwargs))
 
 
 def create_parser() -> argparse.ArgumentParser:

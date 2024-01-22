@@ -1,5 +1,5 @@
 from dependency_injector import containers, providers
-from clients import TGClient
+from clients import DMTelegramClient
 from services import LoguruLoggingService, ScraperService
 from scrapers import TelegramScraper
 
@@ -19,11 +19,11 @@ class ApplicationContainer(containers.DeclarativeContainer):
         "telegram": providers.Factory(
             TelegramScraper,
             client=providers.Factory(
-                TGClient,
+                DMTelegramClient,
                 configuration=configuration.scrapers.telegram.client,
                 logger=logging
             ),
-            patterns=configuration.scrapers.telegram.patterns,
+            configuration=configuration.scrapers.telegram,
             logger=logging
         )
     })

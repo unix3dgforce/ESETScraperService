@@ -1,3 +1,5 @@
+import asyncio
+
 from core.interfaces import IScraperService, IScraper, ILogService
 
 __author__ = 'Sergey K. aka unix3dgforce'
@@ -10,4 +12,5 @@ class ScraperService(IScraperService):
         self._logger = logger
 
     def run(self):
-        pass
+        self._logger.information(f"Start scraper service")
+        asyncio.run(self._scrapers['telegram'].run())

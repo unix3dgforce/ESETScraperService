@@ -1,10 +1,12 @@
 scrapers:
   telegram:
-    name: "Nod32Scraper"
-    api_id: 22012400
-    api_hash: "10c8330e6a18535b9101eb551a0dc35a"
-    channel_id: "@upnod32"
-    pattern: "Username:\s(EAV-\d{10})\sPassword:\s([a-z0-9]{10})"
+    client:
+      name: "Nod32Scraper"
+      api_id: 22012400
+      api_hash: "10c8330e6a18535b9101eb551a0dc35a"
+      channel_id: "@upnod32"
+    patterns:
+      - "Username:\\s(EAV-\\d{10})\\sPassword:\\s([a-z0-9]{10})"
 database:
 
 log:

@@ -1,4 +1,5 @@
 from dependency_injector import containers, providers
+from clients import TGClient
 from services import LoguruLoggingService, ScraperService
 from scrapers import TelegramScraper
 
@@ -17,7 +18,12 @@ class ApplicationContainer(containers.DeclarativeContainer):
     scrapers = providers.Dict({
         "telegram": providers.Factory(
             TelegramScraper,
-            configuration=configuration.scrapers.telegram,
+            client=providers.Factory(
+                TGClient,
+                configuration=configuration.scrapers.telegram.client,
+                logger=logging
+            ),
+            patterns=configuration.scrapers.telegram.patterns,
             logger=logging
         )
     })
